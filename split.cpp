@@ -16,8 +16,29 @@ the function below should be the only one in this file.
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
+// checking if the list is empty and if so, nothing to split
+if (in == nullptr) {
+  odds = nullptr;
+  evens = nullptr;
+  return;
 }
 
-/* If you needed a helper function, write it here */
+// separate node
+Node* curr = in;
+in = in->next;
+
+// recursively split
+split(in, odds, evens);
+
+// if the input value is odd
+if (curr->value % 2 == 1) {
+  // add the current node to the odds list
+  curr->next = odds;
+  odds = curr;
+  // even case 
+} else {
+  // add the current node to the evens list 
+  curr->next = evens;
+  evens = curr;
+  }
+}
